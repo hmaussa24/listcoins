@@ -12,12 +12,18 @@ import CoinListComponent from "../Components/CoinListComponet";
 import GeneralDataCoinComponent from "../Components/GeneralDataCoinComponent";
 
 const CoinList = () => {
+  //Zona de hooks
   const [coins, setCoins] = useState<ICoin[]>([]);
   const [asc, setAsc] = useState<boolean>(false);
   const [start, setStart] = useState<number>(0);
   const [limit, setLimit] = useState<number>(100);
+  //zona de redux
   const dispatcher = useAppDispatch();
   const general = useAppSelector((state) => state.general);
+
+  /** 
+   * Funcion para consultar las criptos, el api retorna hasta maximo 100 coins en una consulta 
+   */
   const getDataCoins = useCallback(() => {
     dispatcher(showSpinner());
     CoinsDataApi.getCoinsData(start, limit)
@@ -38,6 +44,10 @@ const CoinList = () => {
     getDataCoins();
   }, [getDataCoins]);
 
+
+  /**
+   * Funcion para consultar las coins y ordenarlas acendente o desdendente
+   */
   const orderCoins = () => {
     if (asc) {
       dispatcher(showSpinner());
@@ -58,7 +68,9 @@ const CoinList = () => {
       getDataCoins();
     }
   };
-
+/**
+ * funcion para controlar el rango de criptos que se consultan, el rango va de 100 en 100
+ */
   const paginationNavigator = (orientation: number) => {
     if (orientation === 1) {
       if (limit >= general.criptomonedas) {

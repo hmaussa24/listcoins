@@ -1,6 +1,6 @@
 @import "./colors.scss";
 
-.w-100{
+.w-100 {
   width: 100%;
 }
 
@@ -14,39 +14,39 @@
   height: 50px;
 }
 
-.number-general{
+.number-general {
   color: $color-2;
   font-weight: bold;
 }
 
-.text-color-coin{
+.text-color-coin {
   font-weight: bold;
   color: $color-2;
 }
 
 .text-color-red {
- color: $color-4;
+  color: $color-4;
 }
 .text-color-green {
   color: $color-3;
 }
 
-.text-base{
+.text-base {
   font-size: 15px;
 }
 
-.title-table{
+.title-table {
   font-weight: bold;
   font-size: 18px;
 }
 
-.title-table-dark{
+.title-table-dark {
   font-weight: bold;
   font-size: 18px;
   color: $color-2;
 }
 
-.label-price{
+.label-price {
   cursor: pointer;
 }
 
@@ -55,18 +55,27 @@
   cursor: pointer;
 }
 
-.arrow:hover{
+.arrow:hover {
   color: $color-3;
 }
-.dark-bg-color-1{
+.dark-bg-color-1 {
   background-color: $color-dark-1;
 }
-.dark-bg-color-2{
+.dark-bg-color-2 {
   background-color: $color-dark-2;
 }
 
 .text-color-white {
-  color:$color-white;
+  color: $color-white;
 }
 
-
+.link {
+  &--white {
+    text-decoration: none;
+    color: $color-2;
+  }
+  &--normal {
+    text-decoration: none;
+    color: $color-white;
+  }
+}

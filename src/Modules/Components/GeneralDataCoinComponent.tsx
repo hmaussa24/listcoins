@@ -11,11 +11,19 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import NumberFormat from "react-number-format";
 import { useAppDispatch, useAppSelector } from "../../Redux/hook/hook";
 import { setGeneral } from "../../Redux/slice/general/general.slice";
+/**
+ * Este componente es el marco superior que muestra las generalidades del mercado, en este caso el componente
+ * no recibe ningun dato
+ * @returns 
+ */
 const GeneralDataCoinComponent = () => {
   const [generalData, setGeneralData] = useState<IGeneralData>();
   const dispatcher = useAppDispatch();
   const general =  useAppSelector(state => state.general)
 
+  /**
+   * Funcion para consultar las generalidades del mercado
+   */
   const getGeneralData = useCallback(() => {
     GeneralDataApi.getGeneralData()
       .then((result) => {
@@ -24,6 +32,10 @@ const GeneralDataCoinComponent = () => {
       })
       .catch((error) => {});
   }, [dispatcher]);
+
+  /**
+   * hook que llama la funcion de consulta y ademas dispara un intervalo de 10 segundos para refrescar los datos de mercado
+   */
   useEffect(() => {
     getGeneralData();
     const interval = setInterval(() => {

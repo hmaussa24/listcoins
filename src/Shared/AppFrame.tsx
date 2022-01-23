@@ -12,6 +12,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useState } from "react";
 import { useAppDispatch } from "../Redux/hook/hook";
 import { setDark } from "../Redux/slice/general/general.slice";
+import { UrlRoutes } from "./UrlRoutes";
+import { Link } from "react-router-dom";
 
 interface Props {
   /**
@@ -21,7 +23,6 @@ interface Props {
   window?: () => Window;
   children: any;
 }
-
 function ScrollTop(props: Props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -59,6 +60,8 @@ function ScrollTop(props: Props) {
   );
 }
 
+
+//Area de trabajo principal que recibe los children que en este caso serian los componentes
 const AppFrame = (props: Props) => {
   const { children } = props;
   const [checked, setChecked] = useState<boolean>(false);
@@ -75,7 +78,7 @@ const AppFrame = (props: Props) => {
         <AppBar sx={checked ? {backgroundColor: "#6a6a6a"}:{}}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              {Labels.nameApp}
+              <Link className="link--normal" to={UrlRoutes.main}>{Labels.nameApp}</Link>
             </Typography>
             <FormGroup>
               <FormControlLabel
@@ -87,7 +90,7 @@ const AppFrame = (props: Props) => {
         </AppBar>
       </Box>
       <div id="back-to-top-anchor" className={checked ? "dark-bg-color-" : ""}> </div>
-      <Grid item xs={12} sx={checked ? {backgroundColor: "#444444"}:{}}>
+      <Grid item xs={12} sx={checked ? {backgroundColor: "#444444", minHeight: "100vh"}:{}}>
         {children}
       </Grid>
       <ScrollTop {...props}>

@@ -18,7 +18,13 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useAppSelector } from "../../Redux/hook/hook";
-
+import { Link } from "react-router-dom";
+import { UrlRoutes } from "../../Shared/UrlRoutes";
+/**
+ * El componente que contiene la tabla de las criptos
+ * @param props recibe la lista de criptos, las funciones de paginado y ademas la funcion que ordena las criptos
+ * @returns 
+ */
 const CoinListComponent = (props: ICoinList) => {
   const { Coins, ordenarCoins, asc, paginationNavigator } = props;
   const general = useAppSelector(state => state.general)
@@ -84,7 +90,7 @@ const CoinListComponent = (props: ICoinList) => {
                           />
                         </Grid>
                         <Grid item xs={7} className="text-color-coin" sx={ general.dark ?  {color: "#fff"} : {}}>
-                          <Grid>{coin.name}</Grid>
+                          <Grid><Link className="link--white" to={UrlRoutes.details}>{coin.name}</Link></Grid>
                           <Grid>{coin.symbol}</Grid>
                         </Grid>
                       </Grid>
