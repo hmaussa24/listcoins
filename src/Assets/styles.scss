@@ -1,0 +1,72 @@
+@import "./colors.scss";
+
+.w-100{
+  width: 100%;
+}
+
+.general-details {
+  border-bottom: 1px solid $color-1;
+  height: 50px;
+}
+
+.general-details-dark {
+  border-bottom: 1px solid $color-dark-1;
+  height: 50px;
+}
+
+.number-general{
+  color: $color-2;
+  font-weight: bold;
+}
+
+.text-color-coin{
+  font-weight: bold;
+  color: $color-2;
+}
+
+.text-color-red {
+ color: $color-4;
+}
+.text-color-green {
+  color: $color-3;
+}
+
+.text-base{
+  font-size: 15px;
+}
+
+.title-table{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.title-table-dark{
+  font-weight: bold;
+  font-size: 18px;
+  color: $color-2;
+}
+
+.label-price{
+  cursor: pointer;
+}
+
+.arrow {
+  color: $color-2;
+  cursor: pointer;
+}
+
+.arrow:hover{
+  color: $color-3;
+}
+.dark-bg-color-1{
+  background-color: $color-dark-1;
+}
+.dark-bg-color-2{
+  background-color: $color-dark-2;
+}
+
+.text-color-white {
+  color:$color-white;
+}
+
+

@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AppFrame from "./Shared/AppFrame";
+import { UrlRoutes } from "./Shared/UrlRoutes";
+import CoinList from "./Modules/CoinList/CointList";
+import CointDetails from "./Modules/CoinList/CointDetails";
+import "./Assets/styles.scss";
+import Spinner from "./Shared/spiner/spiner";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <AppFrame>
+          <Routes>
+            <Route path={UrlRoutes.main} element={<CoinList />} />
+            <Route path={UrlRoutes.details} element={<CointDetails />} />
+          </Routes>
+        </AppFrame>
+      </BrowserRouter>
+      <Spinner />
+    </>
   );
 }
 
