@@ -10,10 +10,11 @@ import { Labels } from "./Labels";
 import { Fab, FormControlLabel, FormGroup, Grid, Switch } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useState } from "react";
-import { useAppDispatch } from "../Redux/hook/hook";
+import { useAppDispatch, useAppSelector } from "../Redux/hook/hook";
 import { setDark } from "../Redux/slice/general/general.slice";
 import { UrlRoutes } from "./UrlRoutes";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 interface Props {
   /**
@@ -66,16 +67,20 @@ const AppFrame = (props: Props) => {
   const { children } = props;
   const [checked, setChecked] = useState<boolean>(false);
   const dispatcher =  useAppDispatch() 
+  const general = useAppSelector(state=> state.general)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
     dispatcher(setDark(event.target.checked))
   };
+  useEffect(()=> {
+    setChecked(general.dark)
+  },[general.dark])
   return (
     <React.Fragment>
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar sx={checked ? {backgroundColor: "#6a6a6a"}:{}}>
+        <AppBar sx={general.dark ? {backgroundColor: "#6a6a6a"}:{}}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link className="link--normal" to={UrlRoutes.main}>{Labels.nameApp}</Link>
@@ -89,8 +94,8 @@ const AppFrame = (props: Props) => {
           </Toolbar>
         </AppBar>
       </Box>
-      <div id="back-to-top-anchor" className={checked ? "dark-bg-color-" : ""}> </div>
-      <Grid item xs={12} sx={checked ? {backgroundColor: "#444444", minHeight: "100vh"}:{minHeight: "100vh"}}>
+      <div id="back-to-top-anchor" className={general.dark? "dark-bg-color-" : ""}> </div>
+      <Grid item xs={12} sx={general.dark ? {backgroundColor: "#444444", minHeight: "100vh"}:{minHeight: "100vh"}}>
         {children}
       </Grid>
       <ScrollTop {...props}>

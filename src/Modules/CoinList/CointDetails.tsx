@@ -17,7 +17,7 @@ import GeneralDataCoinComponent from "./Components/GeneralDataCoinComponent";
 const CointDetails = () => {
   // hooks
   const [coin, setCoin] = useState<ICoin>();
-  const [markets, setMarkets] = useState<IMarket[]>();
+  const [markets, setMarkets] = useState<IMarket[]>([]);
   //redux
   const dispatcher = useAppDispatch();
   const general = useAppSelector((state) => state.general);

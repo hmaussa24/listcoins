@@ -67,7 +67,7 @@ const DataCoinChange = (props: IMarkets) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {market?.map((item, index) => (
+            {market && market?.map((item, index) => (
               <TableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
