@@ -10,23 +10,21 @@ import {
   TableRow,
 } from "@mui/material";
 import NumberFormat from "react-number-format";
-import { Labels } from "../../Shared/Labels";
-import { ICoinList } from "../../Shared/Models/CionList.model";
-import { isPositive } from "../../Utils/NumbersOperations";
+import { Labels } from "../../../Shared/Labels";
+import { ICoinList } from "../../../Shared/Models/CionList.model";
+import { isPositive } from "../../../Utils/NumbersOperations";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { useAppSelector } from "../../Redux/hook/hook";
-import { Link } from "react-router-dom";
-import { UrlRoutes } from "../../Shared/UrlRoutes";
+import { useAppSelector } from "../../../Redux/hook/hook";
 /**
  * El componente que contiene la tabla de las criptos
  * @param props recibe la lista de criptos, las funciones de paginado y ademas la funcion que ordena las criptos
  * @returns 
  */
 const CoinListComponent = (props: ICoinList) => {
-  const { Coins, ordenarCoins, asc, paginationNavigator } = props;
+  const { Coins, ordenarCoins, asc, paginationNavigator, goToCoin } = props;
   const general = useAppSelector(state => state.general)
   return (
     <Box mt={2}>
@@ -90,7 +88,7 @@ const CoinListComponent = (props: ICoinList) => {
                           />
                         </Grid>
                         <Grid item xs={7} className="text-color-coin" sx={ general.dark ?  {color: "#fff"} : {}}>
-                          <Grid><Link className="link--white" to={UrlRoutes.details}>{coin.name}</Link></Grid>
+                          <Grid ><label className="link--white label-price" onClick={() => {goToCoin(Number(coin.id))}} >{coin.name}</label></Grid>
                           <Grid>{coin.symbol}</Grid>
                         </Grid>
                       </Grid>

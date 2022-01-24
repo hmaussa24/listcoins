@@ -5,4 +5,5 @@ export interface ICoinList {
     ordenarCoins: () => void;
     asc: boolean;
     paginationNavigator: (orientation: number) => void;
+    goToCoin: (id: number) => void
 }

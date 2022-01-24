@@ -90,7 +90,7 @@ const AppFrame = (props: Props) => {
         </AppBar>
       </Box>
       <div id="back-to-top-anchor" className={checked ? "dark-bg-color-" : ""}> </div>
-      <Grid item xs={12} sx={checked ? {backgroundColor: "#444444", minHeight: "100vh"}:{}}>
+      <Grid item xs={12} sx={checked ? {backgroundColor: "#444444", minHeight: "100vh"}:{minHeight: "100vh"}}>
         {children}
       </Grid>
       <ScrollTop {...props}>

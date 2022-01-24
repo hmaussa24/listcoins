@@ -1,16 +1,16 @@
 import { Box, Grid } from "@mui/material";
-import { Labels } from "../../Shared/Labels";
+import { Labels } from "../../../Shared/Labels";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import PaidIcon from "@mui/icons-material/Paid";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import MoneyIcon from "@mui/icons-material/Money";
 import { useCallback, useEffect, useState } from "react";
-import { GeneralDataApi } from "../../Services/API/GeneralData.api";
-import { IGeneralData } from "../../Shared/Models/GeneralData.model";
+import { GeneralDataApi } from "../../../Services/API/GeneralData.api";
+import { IGeneralData } from "../../../Shared/Models/GeneralData.model";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import NumberFormat from "react-number-format";
-import { useAppDispatch, useAppSelector } from "../../Redux/hook/hook";
-import { setGeneral } from "../../Redux/slice/general/general.slice";
+import { useAppDispatch, useAppSelector } from "../../../Redux/hook/hook";
+import { setGeneral } from "../../../Redux/slice/general/general.slice";
 /**
  * Este componente es el marco superior que muestra las generalidades del mercado, en este caso el componente
  * no recibe ningun dato

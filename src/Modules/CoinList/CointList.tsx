@@ -8,8 +8,11 @@ import {
 } from "../../Redux/slice/spiner/spiner.slice";
 import { CoinsDataApi } from "../../Services/API/CoinsData.api";
 import { ICoin } from "../../Shared/Models/CoinData.model";
-import CoinListComponent from "../Components/CoinListComponet";
-import GeneralDataCoinComponent from "../Components/GeneralDataCoinComponent";
+import CoinListComponent from "./Components/CoinListComponet";
+import GeneralDataCoinComponent from "./Components/GeneralDataCoinComponent";
+import { useNavigate } from "react-router-dom";
+import { UrlRoutes } from "../../Shared/UrlRoutes";
+import { setIdCoins } from "../../Redux/slice/general/general.slice";
 
 const CoinList = () => {
   //Zona de hooks
@@ -20,9 +23,10 @@ const CoinList = () => {
   //zona de redux
   const dispatcher = useAppDispatch();
   const general = useAppSelector((state) => state.general);
+  const history = useNavigate();
 
-  /** 
-   * Funcion para consultar las criptos, el api retorna hasta maximo 100 coins en una consulta 
+  /**
+   * Funcion para consultar las criptos, el api retorna hasta maximo 100 coins en una consulta
    */
   const getDataCoins = useCallback(() => {
     dispatcher(showSpinner());
@@ -43,7 +47,6 @@ const CoinList = () => {
   useEffect(() => {
     getDataCoins();
   }, [getDataCoins]);
-
 
   /**
    * Funcion para consultar las coins y ordenarlas acendente o desdendente
@@ -68,9 +71,9 @@ const CoinList = () => {
       getDataCoins();
     }
   };
-/**
- * funcion para controlar el rango de criptos que se consultan, el rango va de 100 en 100
- */
+  /**
+   * funcion para controlar el rango de criptos que se consultan, el rango va de 100 en 100
+   */
   const paginationNavigator = (orientation: number) => {
     if (orientation === 1) {
       if (limit >= general.criptomonedas) {
@@ -81,15 +84,20 @@ const CoinList = () => {
       }
     }
     if (orientation === 0) {
-      if(start <= 0){
+      if (start <= 0) {
         setStart(0);
         setLimit(100);
-      }else{
+      } else {
         setStart(start - 100);
         setLimit(limit - 100);
       }
     }
     //orderCoins();
+  };
+
+  const goToCoin = (id: number) => {
+    dispatcher(setIdCoins(id));
+    history(UrlRoutes.details);
   };
 
   return (
@@ -100,6 +108,7 @@ const CoinList = () => {
         ordenarCoins={orderCoins}
         asc={asc}
         paginationNavigator={paginationNavigator}
+        goToCoin={goToCoin}
       />
     </>
   );

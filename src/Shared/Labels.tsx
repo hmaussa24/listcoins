@@ -14,5 +14,6 @@ export const Labels = {
     hd: "24H",
     d: "7D",
     usd: "USD",
-    titleTale: "Precios de las criptomonedas según la capitalización de mercado"
+    titleTale: "Precios de las criptomonedas según la capitalización de mercado",
+    bitcoin: "Bitcoin"
 }

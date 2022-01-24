@@ -9,6 +9,23 @@
   height: 50px;
 }
 
+.border-radius {
+  border-radius: 7px 7px 7px 7px;
+-moz-border-radius: 7px 7px 7px 7px;
+-webkit-border-radius: 7px 7px 7px 7px;
+}
+
+.basic-details {
+  &--normal {
+    padding: 10px;
+    border: 1px solid $color-2;
+  }
+  &--dark{
+    padding: 10px;
+    background-color: $color-dark-2;
+  }
+}
+
 .general-details-dark {
   border-bottom: 1px solid $color-dark-1;
   height: 50px;

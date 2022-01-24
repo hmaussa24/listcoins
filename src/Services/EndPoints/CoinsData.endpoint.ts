@@ -1,3 +1,4 @@
 export const CoinsDataEndPoints = {
-    getCoins: "tickers/"
+    getCoins: "tickers/",
+    getCoin: "ticker/?id="
 }
