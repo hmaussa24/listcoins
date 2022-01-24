@@ -15,5 +15,9 @@ export const Labels = {
     d: "7D",
     usd: "USD",
     titleTale: "Precios de las criptomonedas según la capitalización de mercado",
-    bitcoin: "Bitcoin"
+    bitcoin: "Bitcoin",
+    vs: "VS",
+    semana: "Semana",
+    nombre: "Nombre Exchange",
+    exchangesPrecios: "Precios en los diferentes Exchanges"
 }

@@ -8,13 +8,16 @@ import {
 } from "../../Redux/slice/spiner/spiner.slice";
 import { CoinsDataApi } from "../../Services/API/CoinsData.api";
 import { ICoin } from "../../Shared/Models/CoinData.model";
+import { IMarket } from "../../Shared/Models/Markets.model";
 import DataCoinBasic from "./Components/DataCoinBasic";
+import DataCoinChange from "./Components/DataCoinChange";
 import DataMarketCoin from "./Components/DataMarketCoin";
 import GeneralDataCoinComponent from "./Components/GeneralDataCoinComponent";
 
 const CointDetails = () => {
   // hooks
- const [coin, setCoin] = useState<ICoin>();
+  const [coin, setCoin] = useState<ICoin>();
+  const [markets, setMarkets] = useState<IMarket[]>();
   //redux
   const dispatcher = useAppDispatch();
   const general = useAppSelector((state) => state.general);
@@ -22,17 +25,29 @@ const CointDetails = () => {
     dispatcher(showSpinner());
     CoinsDataApi.getCoinData(general.idCoin)
       .then((result) => {
-        setCoin(result.data[0])
+        setCoin(result.data[0]);
         dispatcher(closeSpinner());
       })
       .catch((error) => {
         dispatcher(closeSpinner());
       });
   }, [dispatcher, general.idCoin]);
+  const getMarketsData = useCallback(() => {
+    dispatcher(showSpinner())
+    CoinsDataApi.getMarketsData(general.idCoin)
+      .then((result) => {
+        setMarkets(result.data) 
+        dispatcher(closeSpinner());
+      })
+      .catch((error) => {
+        dispatcher(closeSpinner());
+      });
+  },[dispatcher, general.idCoin]);
 
   useEffect(() => {
     getCoinData();
-  }, [getCoinData]);
+    getMarketsData()
+  }, [getCoinData, getMarketsData]);
 
   return (
     <>
@@ -46,6 +61,9 @@ const CointDetails = () => {
             <Grid container justifyContent="flex-start">
               <Grid item xs={12}>
                 <DataMarketCoin coin={coin} />
+              </Grid>
+              <Grid item xs={12}>
+                <DataCoinChange market={markets} />
               </Grid>
             </Grid>
           </Grid>
