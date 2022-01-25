@@ -5,5 +5,7 @@ export interface ICoinList {
     ordenarCoins: () => void;
     asc: boolean;
     paginationNavigator: (orientation: number) => void;
-    goToCoin: (id: number) => void
+    goToCoin: (id: number) => void;
+    price: number;
+    handleChangeFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

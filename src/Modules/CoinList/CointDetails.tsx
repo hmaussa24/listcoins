@@ -9,6 +9,7 @@ import {
 import { CoinsDataApi } from "../../Services/API/CoinsData.api";
 import { ICoin } from "../../Shared/Models/CoinData.model";
 import { IMarket } from "../../Shared/Models/Markets.model";
+import CoinMarketPrice from "./Components/CoinMarketPrice";
 import DataCoinBasic from "./Components/DataCoinBasic";
 import DataCoinChange from "./Components/DataCoinChange";
 import DataMarketCoin from "./Components/DataMarketCoin";
@@ -47,6 +48,15 @@ const CointDetails = () => {
   useEffect(() => {
     getCoinData();
     getMarketsData()
+    const anchor = (document
+    ).querySelector("#back-to-top-anchor");
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   }, [getCoinData, getMarketsData]);
 
   return (
@@ -61,6 +71,9 @@ const CointDetails = () => {
             <Grid container justifyContent="flex-start">
               <Grid item xs={12}>
                 <DataMarketCoin coin={coin} />
+              </Grid>
+              <Grid item xs={12}>
+                <CoinMarketPrice coin={coin} />
               </Grid>
               <Grid item xs={12}>
                 <DataCoinChange market={markets} />

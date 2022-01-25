@@ -17,9 +17,11 @@ import { setIdCoins } from "../../Redux/slice/general/general.slice";
 const CoinList = () => {
   //Zona de hooks
   const [coins, setCoins] = useState<ICoin[]>([]);
+  const [coinsTemp, setCoinsTemp] = useState<ICoin[]>([]);
   const [asc, setAsc] = useState<boolean>(false);
   const [start, setStart] = useState<number>(0);
   const [limit, setLimit] = useState<number>(100);
+  const [price, setPrice] = useState<number>(0);
   //zona de redux
   const dispatcher = useAppDispatch();
   const general = useAppSelector((state) => state.general);
@@ -33,6 +35,11 @@ const CoinList = () => {
     CoinsDataApi.getCoinsData(start, limit)
       .then((result) => {
         setCoins(
+          result.data.data.sort(
+            (a, b) => Number(b.price_usd) - Number(a.price_usd)
+          )
+        );
+        setCoinsTemp(
           result.data.data.sort(
             (a, b) => Number(b.price_usd) - Number(a.price_usd)
           )
@@ -100,6 +107,30 @@ const CoinList = () => {
     history(UrlRoutes.details);
   };
 
+  const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(Number(event.target.value));
+    filterPrice(Number(event.target.value))
+  };
+
+  const filterPrice = (rango: number) => {
+    const helper: { [key: number]: ICoin[] } = {
+      0: coinsTemp,
+      1: coinsTemp.filter((coin) => Number(coin.price_usd) < 50),
+      2: coinsTemp.filter(
+        (coin) => Number(coin.price_usd) > 51 && Number(coin.price_usd) < 100
+      ),
+      3: coinsTemp.filter(
+        (coin) => Number(coin.price_usd) > 101 && Number(coin.price_usd) < 500
+      ),
+      4: coinsTemp.filter(
+        (coin) => Number(coin.price_usd) > 501 && Number(coin.price_usd) < 1000
+      ),
+      5: coinsTemp.filter((coin) => Number(coin.price_usd) > 1001),
+    };
+
+    setCoins(helper[rango]);
+  };
+
   return (
     <>
       <GeneralDataCoinComponent />
@@ -109,6 +140,8 @@ const CoinList = () => {
         asc={asc}
         paginationNavigator={paginationNavigator}
         goToCoin={goToCoin}
+        price={price}
+        handleChangeFilter={handleChangeFilter}
       />
     </>
   );

@@ -67,44 +67,46 @@ const DataCoinChange = (props: IMarkets) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {market && market?.map((item, index) => (
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="center">
-                  <Grid sx={general.dark ? { color: "#fff" } : {}}>
-                    {index + 1}
-                  </Grid>
-                </TableCell>
-                <TableCell align="center">
-                  <Grid sx={general.dark ? { color: "#fff" } : {}}>
-                    {item.name}
-                  </Grid>
-                </TableCell>
-                <TableCell align="left">
-                  <Grid>
-                    <NumberFormat
-                      className={general.dark ? "text-color-white" : ""}
-                      value={item.price_usd}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={"$"}
-                    />
-                  </Grid>
-                </TableCell>
-                <TableCell align="left">
-                  <Grid>
-                    <NumberFormat
-                      className={general.dark ? "text-color-white" : ""}
-                      value={item.volume_usd}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={"$"}
-                    />
-                  </Grid>
-                </TableCell>
-              </TableRow>
-            ))}
+            {market &&
+              market?.map((item, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell align="center">
+                    <Grid sx={general.dark ? { color: "#fff" } : {}}>
+                      {index + 1}
+                    </Grid>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Grid sx={general.dark ? { color: "#fff" } : {}}>
+                      {item.name}
+                    </Grid>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Grid>
+                      <NumberFormat
+                        className={general.dark ? "text-color-white" : ""}
+                        value={item.price_usd}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                    </Grid>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Grid>
+                      <NumberFormat
+                        className={general.dark ? "text-color-white" : ""}
+                        value={item.volume_usd}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                    </Grid>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
