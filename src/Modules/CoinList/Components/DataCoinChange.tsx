@@ -12,9 +12,7 @@ import {
 import NumberFormat from "react-number-format";
 import { useAppSelector } from "../../../Redux/hook/hook";
 import { Labels } from "../../../Shared/Labels";
-import { ICoinDetails } from "../../../Shared/Models/CoinDetail.model";
 import { IMarkets } from "../../../Shared/Models/Markets.model";
-import { isPositive } from "../../../Utils/NumbersOperations";
 
 const DataCoinChange = (props: IMarkets) => {
   const { market } = props;

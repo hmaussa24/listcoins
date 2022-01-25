@@ -9,7 +9,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import NumberFormat from "react-number-format";
 import { useAppSelector } from "../../../Redux/hook/hook";
 import { Labels } from "../../../Shared/Labels";
 import { ICoinDetails } from "../../../Shared/Models/CoinDetail.model";
